@@ -61,6 +61,24 @@ try {
 
 # Update and install tools  
 try {
+    $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
+    $sysScriptWin = Join-Path $scriptDir '07_set_system.sh'
+    if (-not (Test-Path $sysScriptWin)) {
+        $sysScriptWin = Join-Path (Join-Path $scriptDir '.') '07_set_system.sh'
+    }
+    if (Test-Path $sysScriptWin) {
+        $sysScriptWsl = (wsl -d $distroName -e wslpath "$sysScriptWin").Trim()
+        Write-Host "- Configuring systemd and cron (07_set_system.sh)" -ForegroundColor Cyan
+        wsl -d $distroName -u root -- bash "$sysScriptWsl"
+    } else {
+        Write-Host "[WARN] 07_set_system.sh not found next to this script; skipping systemd/cron setup" -ForegroundColor Yellow
+    }
+} catch {
+    Write-Host "[WARN] systemd/cron setup failed: $_" -ForegroundColor Yellow
+}
+
+# Update and install tools  
+try {
     # [string]$toolList = "maven,git,curl,wget,unzip,nano,vim",    
     $isUbuntu = $distroName -match "Ubuntu"
     $installCmd = if ($isUbuntu) { "apt-get install -y" } else { "yum install -y" }
