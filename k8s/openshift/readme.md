@@ -51,5 +51,3 @@ Add-LocalGroupMember -Group "Správci technologie Hyper-V" -Member "$env:USERNAM
 # Rename the group name in the command above according to your localized version of Windows if necessary.
 
 ```
-
-
