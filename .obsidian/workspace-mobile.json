@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "wsl/readme.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "readme"
+              "title": "README"
             }
           }
         ]
@@ -169,5 +169,7 @@
     }
   },
   "active": "c656b0890aeac4f4",
-  "lastOpenFiles": []
+  "lastOpenFiles": [
+    "wsl/readme.md"
+  ]
 }
