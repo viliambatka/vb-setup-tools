@@ -11,6 +11,10 @@ reference URL: https://www.rancher.com/quick-start
 
 docker run -d --name rancher --privileged -p 8980:80 -p 6943:443 rancher/rancher
 
+
+ kubectl get pods --all-namespaces
+
+
 # the volume on windows coused to errors and not whatring "-v c:\k3s-rancher:/var/lib/rancher"
 
 
@@ -26,31 +30,18 @@ helm install ranger rancher-latest/ranger \
   --create-namespace
 ```
 
-```powershell
-# First k3s cluster
-docker run -d --name k3s-cluster1 `
-  --privileged `
-  -p 6443:6443 `
-  -p 8180:8080 `
-  rancher/k3s:latest server `
-  -v C:\k3s-data1:/var/lib/rancher/k3s 
-  
-
-
-# Second k3s cluster  
-docker run -d --name k3s-cluster2 `
-  --privileged `
-  -p 6543:6443 `
-  -p 8280:8080 `
-  -v C:\k3s-data2:/var/lib/rancher/k3s `
-  rancher/k3s:latest server
 
 # List available contexts
 kubectl config get-contexts
 
 # Switch to specific cluster
-kubectl config use-context k3d-mycluster1
-kubectl config use-context k3d-mycluster2
+kubectl config use-context k3d-cluster1
+kubectl config use-context k3d-cluster2
+kubectl config use-context k3d-cluster3
+
+kubectl config use-context k3s-cluster1
+kubectl config use-context k3s-cluster2
+
 
 # if new clusters are not in context list, you can use the following command to add the clusters to the kubeconfig file
 # for windows, use the following command to add the clusters to the kubeconfig file 

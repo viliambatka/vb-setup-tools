@@ -42,9 +42,11 @@ function add-cluster-to-kubeconfig {
                 --network "k3s-net$clusterId" `
                 -p "${apiPort}:6443" `
                 -p "${webPort}:8080" `
-                -v "C:\${clustername}:/var/lib/rancher/k3s" `
                 rancher/k3s:latest server
-            
+
+                #-v "C:\${clustername}:/var/lib/rancher/k3s" `
+                
+
             Start-Sleep -Seconds 10 # wait for cluster to start up
         }
 
