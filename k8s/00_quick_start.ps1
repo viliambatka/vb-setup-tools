@@ -116,5 +116,17 @@ try {
 ############################################################
 # TODO
 
+# Next steps: run k3d or rancher desktop quick start scripts to create local clusters
+$k3dQuickStart = Join-Path $k8sScriptDir 'k3d\00_quick_start.ps1'
+& $k3dQuickStart -force:$force
 
-
+$rangerQuickStart = Join-Path $k8sScriptDir 'ranger\00_quick_start.ps1'
+if (Test-Path $rangerQuickStart) {
+	$null = docker version 2>$null
+	if ($LASTEXITCODE -eq 0) {
+		& $rangerQuickStart -force:$force
+	}
+	else {
+		Write-Host "[INFO] Skipping ranger quick start because Windows Docker is not available." -ForegroundColor Cyan
+	}
+}

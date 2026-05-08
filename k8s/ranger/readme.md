@@ -46,7 +46,7 @@ kubectl config use-context k3s-cluster2
 # if new clusters are not in context list, you can use the following command to add the clusters to the kubeconfig file
 # for windows, use the following command to add the clusters to the kubeconfig file 
 wsl cp /mnt/c/path/to/kubeconfig-cluster1.yaml ~/.kube/config
-wsl cp /mnt/c/path/to/kubeconfig-cluster2.yaml ~/.kube/config 
+wsl cp /mnt/c/path/to/kubeconfig-cluster2.yaml ~/.kube/config
 
 
 ```
