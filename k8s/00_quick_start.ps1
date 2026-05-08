@@ -57,7 +57,7 @@ try {
 
 # 2) Run Docker installer inside WSL
 try {
-	$dockerScriptWin = Join-Path $k8sScriptDir '01_set_docker.sh'
+	$dockerScriptWin = Join-Path $repoRoot 'docker\01_set_docker.sh'
 	if (!(Test-Path $dockerScriptWin)) {
 		Write-Error "[ERROR] Missing script: $dockerScriptWin"
 		exit 1
