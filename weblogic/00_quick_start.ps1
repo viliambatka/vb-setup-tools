@@ -60,6 +60,15 @@ Write-Host "[OK] Required Oracle files found" -ForegroundColor Green
 $wslRepoRoot = (wsl -d $distroName -e wslpath "$repoRoot").Trim()
 $wsljdkFile = (wsl -d $distroName -e wslpath "$jdkFile").Trim()
 $wslweblogicFile = (wsl -d $distroName -e wslpath "$weblogicFile").Trim()
+$null = wsl -d $distroName -- bash -lc "pgrep -f 'Dweblogic.Name=AdminServer.*$domainName' >/dev/null 2>&1"
+$shouldStartDomain = $LASTEXITCODE -ne 0
+
+if ($shouldStartDomain) {
+    Write-Host "[INFO] WebLogic console is not running. The domain will be started." -ForegroundColor Cyan
+}
+else {
+    Write-Host "[INFO] WebLogic console is already running. Skipping domain start." -ForegroundColor Cyan
+}
 
 $script = @"
 #!/bin/bash
@@ -76,7 +85,7 @@ export ADMIN_PASSWORD='$adminPassword'
 $(if ($force) { "export FORCE_MODE=true" } else { "export FORCE_MODE=false" })
 ./weblogic/01_set_weblogic.sh
 ./weblogic/02_set_domain.sh '$domainName'
-./weblogic/03_start_domain.sh '$domainName'
+$(if ($shouldStartDomain) { "./weblogic/03_start_domain.sh '$domainName'" } else { "echo '[SKIP] WebLogic admin server already running; start step skipped.'" })
 "@
 
 $script = $script -replace "`r`n", "`n" -replace "`r", "`n"
