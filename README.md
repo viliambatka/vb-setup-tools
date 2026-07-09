@@ -13,6 +13,7 @@ Automation tools for Windows development: WSL, WebLogic, Ansible.
 .\wsl\00_quick_start.ps1      # WSL
 .\ansible\00_quick_start.ps1  # Ansible
 .\weblogic\00_quick_start.ps1 # WebLogic
+.\wslg\00_quick_start.ps1     # WSLg addition to WSL (must be executed manually) .. example for gvim 
 ```
 
 NOTE: files are normalized in repo to LF line endings for consistency across platforms. please see [`.gitattributes`](.gitattributes)
@@ -30,7 +31,14 @@ NOTE: files are normalized in repo to LF line endings for consistency across pla
 cd weblogic/sample && mvn clean package
 ```
 
-## License
+## delete WSL
+
+```powershell
+# List installed WSL distributions
+wsl --list --verbose    
+# Unregister (delete) a specific distribution
+wsl --unregister <DistroName>
+```
 
 MIT License - see [LICENSE](LICENSE)
 
