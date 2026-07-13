@@ -80,8 +80,8 @@ Useful options:
 # allow targeting a non-CRC cluster even when CRC is installed locally
 .\k8s\openshift\apps\gitlab\00_install_operator.ps1 -force
 
-# enable automatic install plan approval
-.\k8s\openshift\apps\gitlab\00_install_operator.ps1 -InstallPlanApproval Automatic
+# require manual install plan approval
+.\k8s\openshift\apps\gitlab\00_install_operator.ps1 -InstallPlanApproval Manual
 ```
 
 The script:
@@ -94,42 +94,63 @@ The script:
 
 ## Install a GitLab instance
 
-After the GitLab Operator deployment is running, apply the GitLab custom resource:
+After the GitLab Operator deployment is running, install GitLab:
 
 ```powershell
-.\k8s\openshift\apps\gitlab\01_install_instance.ps1 -ChartVersion <compatible-chart-version>
+.\k8s\openshift\apps\gitlab\01_install_instance.ps1
 ```
 
-The GitLab CR requires a chart version that is compatible with the installed operator version:
+Default behavior:
+
+- uses GitLab chart `10.1.2`
+- installs cert-manager when the `issuers.cert-manager.io` CRD is missing
+- installs local PostgreSQL, Redis, MinIO, buckets, and storage secrets for CRC/dev
+- creates OpenShift Routes for GitLab, registry, and KAS
+
+Check status:
 
 ```powershell
-$csv = oc -n gitlab-system get subscription gitlab-operator -o jsonpath='{.status.currentCSV}'
-if ($csv -match 'v?(\d+\.\d+\.\d+)$') { $operatorVersion = $Matches[1] }
-"https://gitlab.com/gitlab-org/cloud-native/gitlab-operator/-/blob/$operatorVersion/CHART_VERSIONS"
-```
-
-The script:
-
-- derives the CRC apps domain from the OpenShift console route when `-Domain` is not supplied
-- configures OpenShift Routes instead of the bundled NGINX Ingress controller
-- disables the bundled Prometheus server and GitLab Runner by default for CRC
-- exits before applying the CR if `-ChartVersion` is missing
-- waits for the GitLab custom resource to become `Ready` or `Running` unless `-skipWait` is used
-- prints commands for operator logs, routes, and the initial root password
-
-Useful commands while it reconciles:
-
-```powershell
-oc -n gitlab-system logs deployment/gitlab-controller-manager -c manager -f
 oc -n gitlab-system get gitlab gitlab
-oc -n gitlab-system get route
+oc -n gitlab-system get deploy,statefulset,job,route
 ```
 
-Retrieve the initial root password:
+Open GitLab:
+
+```text
+https://gitlab.apps-crc.testing
+```
+
+Admin login:
+
+```text
+root
+```
+
+Get the initial root password:
 
 ```powershell
 $encodedPassword = oc -n gitlab-system get secret gitlab-gitlab-initial-root-password -o jsonpath='{.data.password}'
 [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($encodedPassword))
+```
+
+Clean and reinstall:
+
+```powershell
+.\k8s\openshift\apps\gitlab\01_install_instance.ps1 -clean
+```
+
+Install another instance:
+
+```powershell
+# `dev` maps to namespace `gitlab-dev` and URL `https://gitlab-dev.apps-crc.testing`
+.\k8s\openshift\apps\gitlab\00_install_operator.ps1 -InstancePrefix dev
+.\k8s\openshift\apps\gitlab\01_install_instance.ps1 -InstancePrefix dev
+```
+
+Useful logs:
+
+```powershell
+oc -n gitlab-system logs deployment/gitlab-controller-manager -c manager -f
 ```
 
 ## Notes
