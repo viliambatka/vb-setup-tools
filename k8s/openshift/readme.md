@@ -33,6 +33,18 @@ Useful options:
 
 # continue even if Docker is reachable on Windows
 .\k8s\openshift\00_quick_start.ps1 -force
+
+# skip Windows portproxy/firewall setup for local-network access
+.\k8s\openshift\00_quick_start.ps1 -skipLocalNetworkExpose
+
+# use a different LAN alias instead of devlab
+.\k8s\openshift\00_quick_start.ps1 -lanAlias openshift-lab
+
+# wait longer for OpenShift to become reachable before running oc checks
+.\k8s\openshift\00_quick_start.ps1 -openShiftWaitSeconds 900
+
+# only apply LAN portproxy/firewall rules; useful after starting CRC from a non-elevated shell
+.\k8s\openshift\00_quick_start.ps1 -localNetworkOnly
 ```
 
 The script:
@@ -42,7 +54,58 @@ The script:
 - finds the pull secret automatically in `Downloads` when possible
 - runs `crc setup`
 - starts CRC with the requested CPU, memory, and disk settings
+- waits for OpenShift to report `Running`
 - shows `crc status` and runs `oc get co` when `oc` is available
+- exposes local-network ports `80`, `443`, and `6443` when run from an elevated PowerShell session
+
+## Execution order
+
+Use this order for a local CRC cluster with GitLab exposed on the LAN:
+
+```powershell
+# 1. Start CRC
+.\k8s\openshift\00_quick_start.ps1
+
+# 2. If CRC was started from a non-elevated shell, expose it to the LAN from Administrator PowerShell
+.\k8s\openshift\00_quick_start.ps1 -localNetworkOnly
+
+# 3. Install the GitLab Operator
+.\k8s\openshift\apps\gitlab\00_install_operator.ps1
+
+# 4. Install the GitLab instance
+.\k8s\openshift\apps\gitlab\01_install_instance.ps1
+```
+
+## Local network access
+
+By default, the quick-start script makes CRC easier to reach from other machines on the same private network:
+
+- CRC keeps its default route ports.
+- Windows `portproxy` entries expose `80`, `443`, and `6443` on the Windows host LAN IP and forward them to the CRC host ports.
+- Existing listeners or conflicting portproxy rules are reported and skipped instead of being overwritten.
+- Windows Firewall Private-profile inbound rules are created for those ports.
+- The script prints DNS/hosts entries for `api.crc.testing`, common CRC routes, GitLab routes, and the `devlab` alias.
+
+Run PowerShell as Administrator for the portproxy and firewall changes to be applied. Without elevation, CRC still starts, but the script only prints the DNS/hosts entries.
+
+If CRC is already running and the first run was not elevated, open PowerShell as Administrator and run:
+
+```powershell
+.\k8s\openshift\00_quick_start.ps1 -localNetworkOnly
+```
+
+For another local-network client, point these names at the Windows host LAN IP printed by the script:
+
+```text
+<windows-lan-ip> api.crc.testing
+<windows-lan-ip> console-openshift-console.apps-crc.testing
+<windows-lan-ip> oauth-openshift.apps-crc.testing
+<windows-lan-ip> gitlab.apps-crc.testing
+<windows-lan-ip> gitlab-dev.apps-crc.testing
+<windows-lan-ip> devlab
+```
+
+Prefer a real DNS wildcard record for `*.apps-crc.testing` when possible. Hosts files do not support wildcard names.
 
 ## Stop and remove CRC
 

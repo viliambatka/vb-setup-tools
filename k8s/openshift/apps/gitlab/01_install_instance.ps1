@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param(
-    [string]$InstancePrefix = '',
+    [string]$InstancePrefix = 'dev',
     [string]$Namespace = 'gitlab-system',
     [string]$Name = 'gitlab',
     [string]$Domain = '',
