@@ -27,5 +27,7 @@ Write-Host "### 00_quick_start.ps1 - Quick Start WSL with $distroName..." -Foreg
 # Update and install tools
 & "$scriptDir\add-ins\03_set_update.ps1" -distroName $distroName -force:$force
 
+& "$scriptDir\task_scheduler\01_set_start_wsl_task.ps1" -distroName $distroName -force:$force
+
 Write-Host "[SUCCESS] WSL setup completed!" -ForegroundColor Green
 wsl -l -v
