@@ -6,8 +6,26 @@ Automation tools for Windows development: WSL, WebLogic, Ansible.
 ## Quick Start
 
 ```powershell
-# Complete setup (WSL + Ansible + WebLogic)
+# Complete setup
 .\00_quick_start.ps1
+
+# Explicit complete setup
+.\00_quick_start.ps1 -All
+
+# Clean/reset supported components before setup
+.\00_quick_start.ps1 -All -Clean
+
+# Force reinstall/recreate behavior where supported
+.\00_quick_start.ps1 -All -Force
+
+# Selected components
+.\00_quick_start.ps1 -Wsl -Docker -K8s
+
+# WebLogic only, after downloading the required Oracle installers
+.\00_quick_start.ps1 -WebLogic
+
+# Custom WSL distribution
+.\00_quick_start.ps1 -All -distroName "Ubuntu-22.04"
 
 # Individual components
 .\wsl\00_quick_start.ps1      # WSL

@@ -19,6 +19,7 @@ Windows Subsystem for Linux setup and configuration.
 - **02_set_dns.sh** - DNS configuration (runs as root)
 - **04_configure_ca_certs.ps1** - Windows CA certificate export/config
 - **05_setup_iso_repo.ps1** - Local ISO repository setup
+- **tast_scheduler/01_set_start_wsl_task.ps1** - Scheduled task to start WSL at logon or startup
 
 ## - CA Certificates
 

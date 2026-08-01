@@ -12,11 +12,14 @@
 	WSL distribution name (default: "OracleLinux_8_10")
 .PARAMETER force
 	Forces Docker reinstall
+.PARAMETER cleanup
+	Cleans existing local Kubernetes clusters before setup
 #>
 [CmdletBinding()]
 param(
 	[ValidateSet("Ubuntu-22.04", "OracleLinux_8_10")]
 	[string]$distroName = "OracleLinux_8_10",
+	[switch]$cleanup,
 	[switch]$force
 )
 
@@ -118,13 +121,13 @@ try {
 
 # Next steps: run k3d or rancher desktop quick start scripts to create local clusters
 $k3dQuickStart = Join-Path $k8sScriptDir 'k3d\00_quick_start.ps1'
-& $k3dQuickStart -force:$force
+& $k3dQuickStart -cleanup:$cleanup -force:$force
 
 $rangerQuickStart = Join-Path $k8sScriptDir 'ranger\00_quick_start.ps1'
 if (Test-Path $rangerQuickStart) {
 	$null = docker version 2>$null
 	if ($LASTEXITCODE -eq 0) {
-		& $rangerQuickStart -force:$force
+		& $rangerQuickStart -cleanup:$cleanup -force:$force
 	}
 	else {
 		Write-Host "[INFO] Skipping ranger quick start because Windows Docker is not available." -ForegroundColor Cyan
