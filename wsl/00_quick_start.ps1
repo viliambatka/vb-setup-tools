@@ -15,6 +15,9 @@ param(
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
 Write-Host "### 00_quick_start.ps1 - Quick Start WSL with $distroName..." -ForegroundColor Cyan
 
+# Configure user profile .wslconfig ([wsl2] settings)
+& "$scriptDir\add-ins\01_set_wslconfig.ps1" -force:$force
+
 # Install WSL distribution
 & "$scriptDir\01_set_wsl.ps1" -distroName $distroName -setdefault -force:$force
 
