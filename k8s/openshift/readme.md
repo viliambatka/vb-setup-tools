@@ -33,6 +33,9 @@ Useful options:
 
 # continue even if Docker is reachable on Windows
 .\k8s\openshift\00_quick_start.ps1 -force
+
+# also register a SYSTEM startup task to run CRC at host boot
+.\k8s\openshift\00_quick_start.ps1 -bootTask
 ```
 
 The script:
@@ -43,6 +46,17 @@ The script:
 - runs `crc setup`
 - starts CRC with the requested CPU, memory, and disk settings
 - shows `crc status` and runs `oc get co` when `oc` is available
+- optionally registers a SYSTEM scheduled task for host-boot startup when `-bootTask` is used
+
+## Start CRC at host boot
+
+To manage the startup task directly:
+
+```powershell
+# Elevated PowerShell
+.\k8s\openshift\add-ins\06_set_boot_task.ps1
+.\k8s\openshift\add-ins\06_set_boot_task.ps1 -remove
+```
 
 ## Stop and remove CRC
 

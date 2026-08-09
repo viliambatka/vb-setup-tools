@@ -2,6 +2,7 @@
 param(
 	[switch]$cleanup,
 	[switch]$force,
+	[switch]$bootTask,
 	[string]$pullSecretFile,
 	[ValidateRange(4, 64)]
 	[int]$cpus = 16,
@@ -18,6 +19,7 @@ function Invoke-Crc {
 	if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 }
 
+$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
 Write-Host "### k8s/openshift/00_quick_start.ps1 - OpenShift Local on Windows" -ForegroundColor Cyan
 
 if (-not (Get-Command crc -ErrorAction SilentlyContinue)) {
@@ -100,6 +102,15 @@ if (Get-Command oc -ErrorAction SilentlyContinue) {
 	if ($LASTEXITCODE -ne 0) {
 		Write-Host "[WARN] OpenShift started, but 'oc get co' did not complete successfully yet." -ForegroundColor Yellow
 	}
+}
+
+# Optional reboot survival: register a SYSTEM startup task so CRC comes back
+# after host reboot without requiring interactive logon.
+if ($bootTask) {
+	& "$scriptDir\add-ins\06_set_boot_task.ps1" -cpus $cpus -memoryMB $memoryMB -diskGB $diskGB -force:$force
+}
+else {
+	Write-Host "- Skipping reboot survival (pass -bootTask to register CRC startup task)" -ForegroundColor DarkGray
 }
 
 Write-Host "[SUCCESS] OpenShift Local is configured." -ForegroundColor Green
