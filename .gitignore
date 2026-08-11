@@ -18,6 +18,10 @@ artifacts/
 # PowerShell specific
 *.ps1xml
 
+# Python bytecode - auto-generated, interpreter/version-specific, never commit
+__pycache__/
+*.py[cod]
+
 # OS specific
 .DS_Store
 Thumbs.db
