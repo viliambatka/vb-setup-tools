@@ -2,7 +2,7 @@
 .SYNOPSIS
     Update WSL and install tools
 .PARAMETER distroName
-    WSL distribution name (default: "OracleLinux_8_10")
+    WSL distribution name (default: "OracleLinux_9_5")
 .PARAMETER toolList
     Tools to install (default: maven,git,curl,wget,unzip,nano,vim)
 .PARAMETER force
@@ -10,8 +10,8 @@
 #>
 [CmdletBinding()]
 param(
-    [ValidateSet("Ubuntu-22.04", "OracleLinux_8_10")]
-    [string]$distroName = "OracleLinux_8_10",
+    [ValidateSet("OracleLinux_8_10", "OracleLinux_9_5")]
+    [string]$distroName = "OracleLinux_9_5",
     [string]$toolList = "maven,git,curl,wget,unzip,nano,vim",
     [switch]$force
 )

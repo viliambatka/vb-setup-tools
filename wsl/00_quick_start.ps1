@@ -2,7 +2,7 @@
 .SYNOPSIS
     Quick WSL setup with Oracle Linux distribution
 .PARAMETER distroName
-    Linux distribution name (default: "OracleLinux_8_10")
+    Linux distribution name (default: "OracleLinux_9_5")
 .PARAMETER force
     Forces reinstallation of existing components
 .PARAMETER bootTask
@@ -19,7 +19,7 @@
 #>
 [CmdletBinding()]
 param(
-    [string]$distroName = "OracleLinux_8_10",
+    [string]$distroName = "OracleLinux_9_5",
     [switch]$force,
     [switch]$bootTask
 )

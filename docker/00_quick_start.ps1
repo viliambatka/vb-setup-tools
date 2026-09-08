@@ -7,14 +7,14 @@
 .DESCRIPTION
 	Implements: install Docker Engine inside a WSL distro.
 .PARAMETER distroName
-	WSL distribution name (default: "OracleLinux_8_10")
+	WSL distribution name (default: "OracleLinux_9_5")
 .PARAMETER force
 	Forces Docker reinstall
 #>
 [CmdletBinding()]
 param(
-	[ValidateSet("Ubuntu-22.04", "OracleLinux_8_10")]
-	[string]$distroName = "OracleLinux_8_10",
+	[ValidateSet("OracleLinux_8_10", "OracleLinux_9_5")]
+	[string]$distroName = "OracleLinux_9_5",
 	[switch]$force
 )
 

@@ -2,7 +2,7 @@
 .SYNOPSIS
     Quick WebLogic setup for WSL
 .PARAMETER distroName
-    WSL distribution name (default: "OracleLinux_8_10")
+    WSL distribution name (default: "OracleLinux_9_5")
 .PARAMETER domainName
     WebLogic domain name (default: "test_domain")
 .PARAMETER adminUser
@@ -18,7 +18,7 @@
 #>
 [CmdletBinding()]
 param(
-    [string]$distroName = "OracleLinux_8_10",
+    [string]$distroName = "OracleLinux_9_5",
     [string]$domainName = "test_domain", 
     [string]$adminUser = "admin",
     [string]$adminPassword = "testpwd1",

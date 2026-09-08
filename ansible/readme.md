@@ -9,7 +9,7 @@ Ansible installation and configuration for WSL/Oracle Linux.
 .\00_quick_start.ps1
 
 # Custom WSL distribution
-.\00_quick_start.ps1 -distroName "OracleLinux_8_10"
+.\00_quick_start.ps1 -distroName "OracleLinux_9_5"
 
 # Force reinstall
 .\00_quick_start.ps1 -forse

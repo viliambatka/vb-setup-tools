@@ -2,7 +2,7 @@
 .SYNOPSIS
     Configures DNS settings for WSL distribution
 .PARAMETER distroName
-    WSL distribution name (default: "OracleLinux_8_10")
+    WSL distribution name (default: "OracleLinux_9_5")
 .PARAMETER dnsServers
     DNS servers (auto-detected if not specified)
 .PARAMETER force
@@ -10,8 +10,8 @@
 #>
 [CmdletBinding()]
 param(
-    [ValidateSet("Ubuntu-22.04", "OracleLinux_8_10")]
-    [string]$distroName = "OracleLinux_8_10",
+    [ValidateSet("OracleLinux_8_10", "OracleLinux_9_5")]
+    [string]$distroName = "OracleLinux_9_5",
     [string]$dnsServers = "",
     [switch]$force
 )

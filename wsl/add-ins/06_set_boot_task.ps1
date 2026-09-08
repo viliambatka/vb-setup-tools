@@ -14,7 +14,7 @@
     prevent that (it governs the utility VM, not the distro). Workloads that need
     continuous uptime install an in-guest keepalive as well.
 .PARAMETER distroName
-    WSL distribution to start at boot (default: "OracleLinux_8_10")
+    WSL distribution to start at boot (default: "OracleLinux_9_5")
 .PARAMETER taskName
     Name of the scheduled task (default: "WSL-Boot-<distroName>")
 .PARAMETER remove
@@ -22,7 +22,7 @@
 .PARAMETER force
     Re-registers the task even when it already exists
 .EXAMPLE
-    .\06_set_boot_task.ps1 -distroName OracleLinux_8_10
+    .\06_set_boot_task.ps1 -distroName OracleLinux_9_5
 .EXAMPLE
     .\06_set_boot_task.ps1 -remove
 .NOTES
@@ -31,7 +31,7 @@
 #>
 [CmdletBinding(SupportsShouldProcess)]
 param(
-    [string]$distroName = "OracleLinux_8_10",
+    [string]$distroName = "OracleLinux_9_5",
     [string]$taskName = "",
     [switch]$remove,
     [switch]$force

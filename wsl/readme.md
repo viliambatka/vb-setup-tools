@@ -12,7 +12,7 @@ Windows Subsystem for Linux setup and configuration.
 .\00_quick_start.ps1 -bootTask
 
 # Custom distribution
-.\01_set_wsl.ps1 -distroName "OracleLinux_8_10" -setdefault
+.\01_set_wsl.ps1 -distroName "OracleLinux_9_5" -setdefault
 ```
 
 ## Scripts
@@ -37,7 +37,7 @@ up without anyone logging in — the difference that matters after an unattended
 
 ```powershell
 # Elevated PowerShell
-.\add-ins\06_set_boot_task.ps1 -distroName OracleLinux_8_10
+.\add-ins\06_set_boot_task.ps1 -distroName OracleLinux_9_5
 .\add-ins\06_set_boot_task.ps1 -remove        # undo
 ```
 

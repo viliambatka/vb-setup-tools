@@ -2,7 +2,7 @@
 .SYNOPSIS
     Sets up WSL with specified Linux distribution
 .PARAMETER distroName
-    Linux distribution to install (default: "OracleLinux_8_10")
+    Linux distribution to install (default: "OracleLinux_9_5")
 .PARAMETER setdefault
     Sets as default WSL distribution
 .PARAMETER force
@@ -10,8 +10,8 @@
 #>
 [CmdletBinding()]
 param (
-    [ValidateSet("Ubuntu-22.04", "OracleLinux_8_10")]
-    [string]$distroName = "OracleLinux_8_10",
+    [ValidateSet("OracleLinux_8_10", "OracleLinux_9_5")]
+    [string]$distroName = "OracleLinux_9_5",
     [switch]$setdefault,
     [switch]$force
 )

@@ -2,7 +2,7 @@
 .SYNOPSIS
     Exports Windows CA certificates and configures WSL to use them
 .PARAMETER distroName
-    WSL Linux distribution name (default: "OracleLinux_8_10")
+    WSL Linux distribution name (default: "OracleLinux_9_5")
 .PARAMETER exportPath
     Path to export certificates (default: artifacts/windows-ca-certificates_timestamp.crt)
 .PARAMETER rootOnly
@@ -13,7 +13,7 @@
 
 [CmdletBinding()]
 param(
-    [string]$distroName = "OracleLinux_8_10",
+    [string]$distroName = "OracleLinux_9_5",
     [string]$exportPath = "",
     [switch]$rootOnly,
     [switch]$force

@@ -25,7 +25,7 @@
 
     Idempotent: re-running leaves an existing, healthy unit alone.
 .PARAMETER distroName
-    WSL distribution to keep alive (default: "OracleLinux_8_10")
+    WSL distribution to keep alive (default: "OracleLinux_9_5")
 .PARAMETER unitName
     systemd unit name (default: "wsl-keepalive.service")
 .PARAMETER remove
@@ -33,7 +33,7 @@
 .PARAMETER force
     Rewrites the unit file even when it already exists
 .EXAMPLE
-    .\07_set_keepalive.ps1 -distroName OracleLinux_8_10
+    .\07_set_keepalive.ps1 -distroName OracleLinux_9_5
 .EXAMPLE
     .\07_set_keepalive.ps1 -remove
 .NOTES
@@ -42,7 +42,7 @@
 #>
 [CmdletBinding(SupportsShouldProcess)]
 param(
-    [string]$distroName = "OracleLinux_8_10",
+    [string]$distroName = "OracleLinux_9_5",
     [string]$unitName = "wsl-keepalive.service",
     [switch]$remove,
     [switch]$force

@@ -2,13 +2,13 @@
 .SYNOPSIS
     Quick Ansible setup for WSL
 .PARAMETER distroName
-    WSL distribution name (default: "OracleLinux_8_10")
+    WSL distribution name (default: "OracleLinux_9_5")
 .PARAMETER force
     Forces Ansible reinstallation
 #>
 [CmdletBinding()]
 param(
-    [string]$distroName = "OracleLinux_8_10",
+    [string]$distroName = "OracleLinux_9_5",
     [switch]$force
 )
 
