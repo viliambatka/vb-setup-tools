@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Read-only: why does WSL fail to run Windows .exe files ("Exec format error")?
+# Article: kb/wsl/windows-exe-exec-format-error.md
 # Healthy = a WSLInterop entry in /proc/sys/fs/binfmt_misc and `cmd.exe /c ver` prints a version.
-# Usage (WSL):  bash vb-setup-tools/wsl/diagnostics/check_interop.sh
+# Usage (WSL):  bash vb-setup-tools/scripts/diagnostics/check_interop.sh
 echo "--- /etc/wsl.conf"; cat /etc/wsl.conf 2>/dev/null || echo "(none)"
 echo "--- binfmt_misc mounted?"; mount | grep binfmt_misc || echo "(not mounted)"
 echo "--- binfmt_misc entries"; ls /proc/sys/fs/binfmt_misc/ 2>/dev/null || echo "(unreadable)"

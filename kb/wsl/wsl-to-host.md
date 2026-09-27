@@ -115,7 +115,7 @@ There can be **up to three** Ollama servers on port `11434`. Know which one a to
   | --- | --- | --- | --- |
   | `run.sh`, agent loop (`configs/agent.toml` *(parent repo)* `host = "http://localhost:11434"`) | WSL | `localhost:11434` | WSL-native Ollama |
   | `vb-ai/kb_ai_agent/01_index_kb.ps1`, `02_query_agent.ps1` | Windows | `OLLAMA_BASE_URL` in the env file (default `http://localhost:11434`) | Windows Ollama |
-  | `kb_ai_agent/diagnostics/probe_kb_retrieval.sh` *(vb-ai repo)* | started in WSL, runs the **Windows** `kb_ai_agent/.venv/Scripts/python.exe` | `localhost:11434` | **fails today** (interop broken, see above); would reach the Windows Ollama |
+  | `scripts/diagnostics/probe_kb_retrieval.sh` *(vb-ai repo)* | started in WSL, runs the **Windows** `kb_ai_agent/.venv/Scripts/python.exe` | `localhost:11434` | **fails today** (interop broken, see above); would reach the Windows Ollama |
 
 ### Observed 2026-09-26 (from Windows)
 

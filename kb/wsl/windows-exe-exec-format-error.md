@@ -52,7 +52,7 @@ This matches the widely reported interaction between WSL and systemd: systemd (r
 
 ### Evidence (2026-09-26)
 
-Test: [`wsl/diagnostics/check_interop.sh`](../../wsl/diagnostics/check_interop.sh) (WSL).
+Test: [`scripts/diagnostics/check_interop.sh`](../../scripts/diagnostics/check_interop.sh) (WSL).
 
 ```text
 --- binfmt_misc mounted?
@@ -87,7 +87,7 @@ sudo systemctl restart systemd-binfmt
 
 ## Verification
 
-`bash vb-setup-tools/wsl/diagnostics/check_interop.sh` shows a `WSLInterop` entry
+`bash vb-setup-tools/scripts/diagnostics/check_interop.sh` shows a `WSLInterop` entry
 (`enabled`, `interpreter /init`, `magic 4d5a`), and `cmd.exe /c ver` prints the Windows
 version. Both must still hold after `wsl --terminate OracleLinux_9_5` and a restart.
 
@@ -95,7 +95,7 @@ version. Both must still hold after `wsl --terminate OracleLinux_9_5` and a rest
 
 - **Assuming interop just works:** `wsl-to-host.md` and the repo AGENTS.md described
   "WSL script calls a Windows `.exe`" as a working pattern. It had never been tested here.
-  The first real run of `kb_ai_agent/diagnostics/probe_kb_retrieval.sh` *(vb-ai repo)* hit this
+  The first real run of `scripts/diagnostics/probe_kb_retrieval.sh` *(vb-ai repo)* hit this
   error.
 
 ## Open questions
