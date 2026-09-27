@@ -46,7 +46,7 @@ up without anyone logging in — the difference that matters after an unattended
 prevent that — it governs the utility VM, not the distro. Workloads that need
 continuous uptime (a self-hosted CI runner, a long-running service) also need an
 in-guest keepalive; see
-[SOP-15](../../instructions/sop/15-pipeline-automation.md).
+[SOP-15](../../kb/sop/15-pipeline-automation.md).
 
 ## - CA Certificates
 
