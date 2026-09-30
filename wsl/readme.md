@@ -29,6 +29,18 @@ Windows Subsystem for Linux setup and configuration.
 - **05_set_iso_repo.ps1** - Local ISO repository setup
 - **06_set_boot_task.ps1** - Start the distro automatically at host boot
 
+### Install PowerShell 7 in Oracle Linux 9
+
+From the repository root, run the installer inside the WSL distro as root:
+
+```bash
+cd /mnt/j/sd_src/repo/vb-bb-targets/vb-setup-tools/wsl/add-ins
+sudo bash ./08_install_pwsh.sh
+```
+
+The installer adds Microsoft's RHEL 9 package repository, installs the `powershell`
+package with `dnf`, and prints the installed `pwsh` version.
+
 ## 🔌 Start at host boot
 
 Registers a **SYSTEM** scheduled task with an at-startup trigger, so the distro comes
