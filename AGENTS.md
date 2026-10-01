@@ -2,10 +2,12 @@
 
 ## Agent prompt clarity — standing instruction (2026-10-01)
 
-- Write instructions that smaller local models such as `ornith-1.5:9b` can follow literally.
+- Write instructions that smaller or less capable models can follow literally.
   Use short sentences, one action per step, and one consistent name for each concept.
 - Review the assembled prompt, including configuration, Python strings, Markdown, tool
   descriptions, and injected reference files. Remove contradictions and repeated directions.
+- Preserve useful concepts and operator guidance outside the loaded prompt. Text before a
+  `---GOAL---` marker is not sent by the pipeline; shortening it does not save model tokens.
 - Name only tools and arguments present in the active schemas. Give valid examples. State
   the path root explicitly; use paths returned by tools instead of guessing filenames.
 - State the objective, required inputs, action order, success evidence, and what to do when
