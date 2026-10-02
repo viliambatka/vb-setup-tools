@@ -32,7 +32,7 @@ Oracle WebLogic Server installation and domain management.
 
 - **01_set_weblogic.sh** - WebLogic Server installation
 - **02_set_domain.sh** - Domain creation with secure passwords
-- **03_run_domain.sh** - Domain startup/management
+- **03_start_domain.sh** - Domain startup/management
 
 ## - Manual Setup
 
@@ -40,7 +40,7 @@ Oracle WebLogic Server installation and domain management.
 # Step-by-step
 sudo ./01_set_weblogic.sh
 sudo ./02_set_domain.sh [domain_name]
-sudo ./03_run_domain.sh [domain_name]
+sudo ./03_start_domain.sh [domain_name]
 
 # Custom password
 export ADMIN_PASSWORD="YourSecurePassword123!"

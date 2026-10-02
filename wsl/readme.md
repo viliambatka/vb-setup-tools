@@ -66,29 +66,22 @@ Export Windows certificates to WSL for corporate environments:
 
 ```powershell
 # Export all certificates and configure WSL
-.\04_configure_ca_certs.ps1
+.\add-ins\04_set_certs.ps1
 
 # Root certificates only
-.\04_configure_ca_certs.ps1 -rootOnly
+.\add-ins\04_set_certs.ps1 -rootOnly
 
 # Custom export path
-.\04_configure_ca_certs.ps1 -exportPath "C:\certs\ca-bundle.crt"
+.\add-ins\04_set_certs.ps1 -exportPath "C:\certs\ca-bundle.crt"
 ```
 
 ## 💿 ISO Repository
 
-Use Oracle Linux ISO as local package repository:
-
-```powershell
-# Setup ISO repo (download from oracle.com/linux)
-.\05_setup_iso_repo.ps1 -isoPath "C:\ISOs\OracleLinux-R8-U10-x86_64-dvd.iso"
-
-# Permanent mount + replace online repos
-.\05_setup_iso_repo.ps1 -isoPath "C:\ISOs\oracle.iso" -permanent -replaceRepos
-```
+`add-ins/05_set_iso_repo.ps1` is a placeholder — not yet implemented (empty file). Until it
+lands, configure an offline yum/dnf repo from an Oracle Linux ISO manually inside the distro:
 
 ```bash
-# Install packages offline
+# Mount the ISO and point yum/dnf at it, then install packages offline
 yum install gcc make kernel-devel
 yum list available
 ```

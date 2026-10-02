@@ -44,9 +44,8 @@ ansible-galaxy collection install community.docker
 
 ## 📚 Documentation
 
-- **[Playbooks](playbooks/README.md)** - Essential playbooks
-- **[Scripts](scripts/README.md)** - Example scripts
-- **[Vault Guide](docs/ANSIBLE-VAULT-GUIDE.md)** - Password encryption
-- **[Deployment Guide](docs/SECURE-DEPLOYMENT-GUIDE.md)** - Secure configurations
+- **[Playbooks](playbooks/readme.md)** - Essential playbooks
+- **[Scripts](scripts/readme.md)** - Example scripts
+- **[Docs & templates](docs/readme.md)** - Inventory/vars/deploy templates and a vault file example
 
 

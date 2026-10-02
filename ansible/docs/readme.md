@@ -2,11 +2,6 @@
 
 Guides and templates for Ansible automation.
 
-## 📚 Guides
-
-- **SECURE-DEPLOYMENT-GUIDE.md** - Public repos + secure credentials
-- **ANSIBLE-VAULT-GUIDE.md** - Password encryption tutorial
-
 ## 📄 Templates
 
 - **inventory-template.yml** - Project inventory structure

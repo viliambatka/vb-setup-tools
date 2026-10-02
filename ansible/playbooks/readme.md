@@ -27,14 +27,8 @@ ansible-playbook ansible/playbooks/execute-script.yml -e "script_path=./ansible/
 
 ## 🪟 Windows Management
 
-### install-vscode-portable-wsl.yml
-Installs VS Code portable on Windows from WSL.
-
-```bash
-ansible-playbook ansible/playbooks/install-vscode-portable-wsl.yml
-```
-
-Features: Downloads to Windows, portable mode, desktop shortcut, no admin required.
+VS Code portable install is a standalone script, not a playbook — see
+[`../scripts/install-vscode-portable.sh`](../scripts/readme.md).
 
 ## Examples
 
