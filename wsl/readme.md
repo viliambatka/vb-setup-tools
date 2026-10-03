@@ -35,9 +35,12 @@ Windows Subsystem for Linux setup and configuration.
   (default `J`). Takes effect after `wsl --shutdown` + reopening the distro.
 - **10_update_ollama.sh** - Update (or install) the WSL-side Ollama via the official
   install script. Separate from the Windows Ollama install — updating one does not
-  update the other. Preserves the systemd drop-in (`OLLAMA_MODELS`,
-  `OLLAMA_CONTEXT_LENGTH`). Run as root inside the distro:
-  `sudo bash ./10_update_ollama.sh`
+  update the other. Preserves `OLLAMA_MODELS`/`OLLAMA_CONTEXT_LENGTH` and ensures
+  `OLLAMA_KEEP_ALIVE=-1` is set in the systemd drop-in (default 5m idle timeout
+  otherwise unloads the model between queries, paying a full reload from `/mnt/j`
+  each time). Run as root inside the distro: `sudo bash ./10_update_ollama.sh`
+  (full install/update) or `sudo bash ./10_update_ollama.sh --keepalive-only` (just
+  the keep-alive setting, no reinstall, idempotent).
 
 ### Install PowerShell 7 in Oracle Linux 9
 
