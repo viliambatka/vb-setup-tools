@@ -28,6 +28,16 @@ Windows Subsystem for Linux setup and configuration.
 - **04_set_certs.ps1** - Windows CA certificate export/config
 - **05_set_iso_repo.ps1** - Local ISO repository setup
 - **06_set_boot_task.ps1** - Start the distro automatically at host boot
+- **09_fix_interop_and_drive_metadata.sh** - Fix two boot-time quirks: WSLInterop
+  (binfmt_misc) not surviving a restart with `systemd=true`, and a mounted Windows drive
+  not supporting `chmod`/`chown`/`chtimes` (DrvFs without the `metadata` option). Run as
+  root inside the distro: `sudo bash ./09_fix_interop_and_drive_metadata.sh [DRIVE_LETTER]`
+  (default `J`). Takes effect after `wsl --shutdown` + reopening the distro.
+- **10_update_ollama.sh** - Update (or install) the WSL-side Ollama via the official
+  install script. Separate from the Windows Ollama install — updating one does not
+  update the other. Preserves the systemd drop-in (`OLLAMA_MODELS`,
+  `OLLAMA_CONTEXT_LENGTH`). Run as root inside the distro:
+  `sudo bash ./10_update_ollama.sh`
 
 ### Install PowerShell 7 in Oracle Linux 9
 
