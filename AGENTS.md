@@ -1,5 +1,10 @@
 # Agent Instructions (vb-setup-tools)
 
+## Root name
+
+`REPO_VB_SETUP_TOOLS_ROOT` (path token `<REPO_VB_SETUP_TOOLS_ROOT>`) is the folder that contains
+this file, e.g. `<REPO_VB_SETUP_TOOLS_ROOT>/ansible/readme.md`.
+
 ## Agent prompt clarity — standing instruction (2026-10-01)
 
 - Write instructions that smaller or less capable models can follow literally.
